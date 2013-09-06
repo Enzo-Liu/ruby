@@ -1,7 +1,5 @@
-p = [200,100,50,20,10,5,2,1]
 
 count = 0
-length = p.length
 left = 200
 0.upto(left/200){|i|
   left1 = left-i*200
@@ -25,16 +23,23 @@ left = 200
     }
   }
 }
-
+puts count
 #try to use this to learn block/proc
-$count=0
-def cal(left,a)    
-   yield (left) 
-   yield (a)
+
+$p = [200,100,50,20,10,5,2,1]
+$length = $p.length
+$count = 0
+def cal(left,index)
+  if(left == 0||index == $length-1)
+    $count = $count +1
+    return 
+  end
+    times = left/$p[index]
+    0.upto(times) { |i|
+      cal(left-i*$p[index],index+1)
+    }
 end
 
-cal(20,2) {|b| 0.upto(b){|i| puts i}}
-
-
-puts count
+cal(200,0)
+puts $count
 
