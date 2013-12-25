@@ -40,8 +40,8 @@ end
 
 
 1.upto(pageCount.to_i) do |i|
-  changePageIndex(request,i)
-  response = client.call(:get_task_list,message: request)
+  changePageIndex(getTaskListParam,i)
+  response = client.call(:get_task_list,message: getTaskListParam)
   body = response.body
   result = body[:get_task_list_response][:get_task_list_result]
   resultList = result[:result_list][:my_task_dto] if result[:result_list]!=nil
