@@ -17,7 +17,7 @@ getTaskListParam = { 'queryPara' =>
                 'LoginId'=> 10000,
                 'TaskStartDate'=>
                 {
-                  'DateFrom'=>'2013-12-23T00:00:00.00',
+                  'DateFrom'=>'2013-12-24T00:00:00.00',
                   'DateTo'=>'2013-12-25T00:00:00.00'
                 }
               }
@@ -35,7 +35,7 @@ pageCount = response.body[:get_task_list_response][:get_task_list_result][:pagin
 #puts response.body[:get_task_list_response][:get_task_list_result][:result_list][:my_task_dto][0]
 # {:proc_inst_id=>"862677", :sn=>"862677_23", :url=>"/#!/admin/deal-group/edit/Processing.aspx?SN=862677_23", :folio=>"80090000000hZBWAA2,2089014", :originator_login_id=>"-26317", :process_code=>"PCTGOrderProduce", :task_start_date=>#<DateTime: 2013-12-24T17:51:53+00:00 ((2456651j,64313s,103000000n),+0s,2299161j)>, :process_start_date=>#<DateTime: 2013-12-24T16:47:37+00:00 ((2456651j,60457s,757000000n),+0s,2299161j)>}
 def handleItem(item)
-  puts item[:sn]
+  puts item.inspect
 end
 
 
