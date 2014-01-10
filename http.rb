@@ -3,16 +3,16 @@ require "net/https"
 require "uri"
 
 module HttpGet
-  
+  attr_reader :headers,:domain
   def getFromUri(uri)
-    req = Net::HTTP::Get.new(uri,$headers) 
+    req = Net::HTTP::Get.new(uri,@headers) 
     res = Net::HTTP.start(uri.host) do |http|
         http.request(req)
     end
   end
   
   def postForm(uri,form_data)
-    req = Net::HTTP::Post.new(uri,$headers)
+    req = Net::HTTP::Post.new(uri,@headers)
     req.set_form_data(form_data) 
     res = Net::HTTP.start(uri.host) do |http|
         http.request(req)
@@ -20,15 +20,15 @@ module HttpGet
   end
   
   def publish(dealGroupId)
-    uri = URI::parse($domain+"publish/fullPublish?dealGroupId=#{dealGroupId}")  
-    puts "#{dealGroupId}"+getFromUri(uri,$headers).body
+    uri = URI::parse(@domain+"publish/fullPublish?dealGroupId=#{dealGroupId}")  
+    puts "#{dealGroupId}"+getFromUri(uri).body
   end
 
-  $method_name = {:changeStatus=>"operation/setStatusId",:changeValid=>"operation/setIsValid",:copySpecial=>"hotel/reCopySpecialReminder"}
+  method_name = {:changeStatus=>"operation/setStatusId",:changeValid=>"operation/setIsValid",:copySpecial=>"hotel/reCopySpecialReminder"}
   
-  $method_name.each do |name,value|
+  method_name.each do |name,value|
     define_method name.to_s do |dealGroupId,form_data|
-      uri = URI::parse($domain+value) 
+      uri = URI::parse(@domain+value) 
       puts "#{dealGroupId}"+"--"+name.to_s+"--"+postForm(uri,form_data).body
     end
   end
@@ -36,21 +36,18 @@ module HttpGet
 end
 
 class Online
-  include HttpGet
-  
-  $domain ="http://tgplatform.sys.www.dianping.com/"
-  #返回的cookie  
-  cookie =  'dpadmin=e46ad4c1db08c6250e972340248ca9bf6b39779a97f73c07c6329eb301c044030a6717083c80a0f65442e3497db84b2b551a46e1edf775466e2b63ac7e01d95b;'  
-  $headers = {"cookie"=>cookie}
-  
+  def initialize
+    @domain ="http://tgplatform.sys.www.dianping.com/"
+    @headers = {"cookie"=>'dpadmin=6c814ec417cf94cb840ed833761423d248ed8a453764e3b4082eaa1457798bc230878ba894bcb9a0ae7a84886257c450c886d65b9e8ab46767d33deb71eb8654;'}
+  end
+  include HttpGet 
 end
   
 class Beta
-  $domain ="http://tgplatform.a.51ping.com/"
-  #返回的cookie  
-  cookie =  'dpadmin=093d7cddf6723882e44286d02a5624d9a1a35f694155078348ac6469ca7aa9e8dcd0c59958d1956fed0d39a09a49066fa5550ea0cea7c3efe018eab076421c4d;'  
-  $headers = {"cookie"=>cookie}
-  
+  def initialize
+    @domain ="http://tgplatform.a.51ping.com/"
+    @headers = {"cookie"=>'dpadmin=d2a9dbebb0a821ec858f2fc28dac5789d493a6846cf0f5866363b50885bc1ec0d3bcb49ce919a74c7a3e872b1ce9525a1e48eb2e5dafb50490d6a71430b004f4;'}
+  end
   include HttpGet
 end
 
@@ -61,7 +58,9 @@ end
 #   online.changeValid(dealGroupId,form_data)
 # end
 
-beta = Beta.new
-form_data = {:sampleDealGroupId=>2100013,:targetDealGroupId=>2100026}
-beta.copySpecial(2100026,form_data)
+beta = Online.new
+#form_data = {:sampleDealGroupId=>0,:targetDealGroupId=>0}
+[0].each do |dealGroupId|
+  beta.publish(dealGroupId)
+end
 
