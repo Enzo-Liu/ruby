@@ -38,3 +38,19 @@ def greet
 end
 
 greet  { puts "Hi" }
+a = [ 1, 3, 5, 7, 9 ]
+a[9]=12
+puts a.inspect
+a[1]=[1,2,3]
+puts a.inspect
+puts 0xaabb
+puts -0b10_1010
+puts ?\C-?
+puts "This is line #$."
+# require 'test/unit'
+# class TestSongList < Test::Unit::TestCase
+#   def test_delete
+#     assert_equal(1,1)
+#   end
+# end
+puts [1,3,5,7,9].find{|v|v*v>9}
