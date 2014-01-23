@@ -1,4 +1,4 @@
-load "~/Work/ruby/prime.rb"
+load "~/Work/git/ruby/euler/prime.rb"
 
 class Prime
   def initialize(max)
