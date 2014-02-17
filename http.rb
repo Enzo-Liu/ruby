@@ -42,7 +42,7 @@ end
 class Online
   def initialize
     @domain ="http://tgplatform.sys.www.dianping.com/"
-    @headers = {"cookie"=>'dpadmin=7953c5e5dddf06da21d136bcd755a9add0737fbb2ab84fba843b6a4b5c9357ed0d53949de3c4a169a3afe89de16d62d08e967a7117739af61f5086611286386f;'}
+    @headers = {"cookie"=>'dpadmin=0104bc6dbe6219c7925a7254169e3c5923def8ee85052454177a08a624d20129f1575057eafe598f28566fbfba3f62daa18d6cdbb67668a963050310eee55325;'}
   end
   include HttpGet 
 end
@@ -63,9 +63,10 @@ end
 # end
 
 beta = Online.new
-[2000001].each do |dealGroupId|
-  form_data = {:sampleDealGroupId=>2096544,:targetDealGroupId=>dealGroupId}
+[2153737,2155143,2154990].each do |dealGroupId|
+  #form_data = {:sampleDealGroupId=>2096544,:targetDealGroupId=>dealGroupId}
   #beta.copySpecial(dealGroupId,form_data)
   beta.publish(dealGroupId)
+  beta.offline(dealGroupId)
 end
 
