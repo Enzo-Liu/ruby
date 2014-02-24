@@ -39,34 +39,4 @@ module HttpGet
   
 end
 
-class Online
-  def initialize
-    @domain ="http://tgplatform.sys.www.dianping.com/"
-    @headers = {"cookie"=>'dpadmin=0104bc6dbe6219c7925a7254169e3c5923def8ee85052454177a08a624d20129f1575057eafe598f28566fbfba3f62daa18d6cdbb67668a963050310eee55325;'}
-  end
-  include HttpGet 
-end
-  
-class Beta
-  def initialize
-    @domain ="http://tgplatform.a.51ping.com/"
-    @headers = {"cookie"=>'dpadmin=d2a9dbebb0a821ec858f2fc28dac5789d493a6846cf0f5866363b50885bc1ec0d3bcb49ce919a74c7a3e872b1ce9525a1e48eb2e5dafb50490d6a71430b004f4;'}
-  end
-  include HttpGet
-end
-
-# online = Online.new
-# [2079479].each do |dealGroupId|
-#   form_data = {:statusId=>0,:isValid=>false,:dealGroupId=>dealGroupId}
-#   online.changeStatus(dealGroupId,form_data)
-#   online.changeValid(dealGroupId,form_data)
-# end
-
-beta = Online.new
-[2153737,2155143,2154990].each do |dealGroupId|
-  #form_data = {:sampleDealGroupId=>2096544,:targetDealGroupId=>dealGroupId}
-  #beta.copySpecial(dealGroupId,form_data)
-  beta.publish(dealGroupId)
-  beta.offline(dealGroupId)
-end
 
