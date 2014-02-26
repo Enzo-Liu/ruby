@@ -4,9 +4,16 @@ require 'json'
 class Online
   def initialize
     @domain ="http://tgplatform.sys.www.dianping.com/"
-    @headers = {"cookie"=>'dpadmin=ada367cbb585808b826315e57baa3720010dadd3498029e9651b50484db82dc3a4e537e2e4bc6eb71d6b52b16d657f8d80a5df7619d6a273120b063ad757967e;'}
+    @headers = {"cookie"=>'dpadmin=46cae279621d9ebd3c9b4a1882cf5730308bc6483e560672b7267455ae89041bb01c1f2d779ba419938f94d581af43afd3f4a93048ad430616ffc0d96dcd7503;'}
   end
   include HttpGet 
+end
+class Dev
+  def initialize
+    @domain ="http://t.sys.local.dp:8080/"
+    @headers = {"cookie"=>'p_sys_www=e3iof3455neq1p3512mtxu55; __utma=160316152.117814055.1386928687.1393305730.1393313141.68; __utmc=160316152; __utmz=160316152.1386928687.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); JSESSIONID=FA25413FA84C9E5854178CC4743D3D62; dpadmin=6be5a3cda843f8b75ad52a1de1a03b7fea86964ac9e404f7e7cb1dafeb7a6e8d0e10edb8a4945be74dc63ebffc4f28a6e2b15b7928bab40371473c8fe5520bac; ab=""',"host"=>'t.sys.local.dp:8080'}
+  end
+  include HttpGet
 end
   
 class Beta
@@ -17,42 +24,14 @@ class Beta
   include HttpGet
 end
 
-# online = Online.new
-# [2079479].each do |dealGroupId|
-#   form_data = {:statusId=>0,:isValid=>false,:dealGroupId=>dealGroupId}
-#   online.changeStatus(dealGroupId,form_data)
-#   online.changeValid(dealGroupId,form_data)
-# end
-dMap = {}
-beta = Online.new
-parse = Proc.new {|stId,dtId|
-  #form_data = {:sampleDealGroupId=>2096544,:targetDealGroupId=>dealGroupId}
-  #beta.copySpecial(dealGroupId,form_data)
-  if dMap[dtId]== nil
-    uri = URI::parse("http://tgplatform.sys.www.dianping.com/document/getTemplateInfo?templateId=#{dtId}&dealGroupId=2000001") 
-    body = JSON.parse(beta.getFromUri(uri).body)
-    dMap[dtId] = body
-  else
-    body = dMap[dtId]
+text = File.open("/Users/liuenze/Desktop/data.csv").read
+ online = Online.new()
+ num = 0
+text.split(',')
+.each do |dealGroupId|
+  if (num>=9516)
+    online.extend(dealGroupId,"2014-03-31 00:00:00")
   end
-  proc = Proc.new{|json| 
-    case json
-    when Hash
-       puts "statementTemplateID:#{json["data"]["statementTemplateId"]}"+json.to_s if json["data"] && json["data"]["statementTemplateId"] &&  json["data"]["statementTemplateId"]==stId.to_i
-    else
-    end
-  }
-  JSON.recurse_proc(body,&proc)
-}
-
-text = File.open("/Users/liuenze/Desktop/query_result.csv").read 
-text.gsub!(/\r\n?/,"\n")
-text.each_line do |line|
-    s = line.to_s
-    ss = s.split(",")
-    stId = ss[2]
-    dtId = ss[1].chomp()
-    puts "#{ss[0]},#{stId},#{dtId},#{ss[3].chomp()}"
-    parse.call(stId,dtId)
-end 
-
+  num+=1
+  puts num
+end

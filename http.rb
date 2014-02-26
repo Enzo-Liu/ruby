@@ -37,6 +37,13 @@ module HttpGet
     end
   end
   
+
+  def extend(dealGroupId,toDate)
+    uri = URI::parse(URI.encode(@domain+"action/test/modifyEndDate"))
+    form_data={"json"=>"{\"DealGroupID\":#{dealGroupId},\"ReceiptEndDate\":\"#{toDate}\",\"BlackDates\":[]}"}
+    puts uri.to_s
+    postForm(uri,form_data)
+  end
 end
 
 

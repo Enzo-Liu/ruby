@@ -112,4 +112,4 @@ class Workflow
 end
 
 workflow = Workflow.new()
-workflow.reject(1105323,false)
+workflow.finWorkflow(725753)
