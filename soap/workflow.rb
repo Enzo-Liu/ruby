@@ -10,26 +10,26 @@ class Workflow
 
   def getTaskListParam(loginId,procInstanceId)
     getTaskListParam = 
-    { 'queryPara' => 
-      {'PagingInfo' => 
-        {
-          'PageSize'=> 10,
-          'PageIndex'=> 1,
-          'SortOrder'=> 'Ascending'
-          },
-        'QueryCriteria'=> 
-        {
-          'LoginId'=> loginId,
-          'ProcInstId'=> {'int'=>procInstanceId}
-        }
-      },
-      'apikey'=> 'test'
+      { 'queryPara' => 
+        {'PagingInfo' => 
+         {
+           'PageSize'=> 10,
+           'PageIndex'=> 1,
+           'SortOrder'=> 'Ascending'
+         },
+         'QueryCriteria'=> 
+         {
+           'LoginId'=> loginId,
+           'ProcInstId'=> {'int'=>procInstanceId}
+         }
+        },
+        'apikey'=> 'test'
     }
   end
 
   def getProcessParam(procInstanceId) 
     getProcessStatus = 
-    { 
+      { 
       'procInstId' => procInstanceId,
       'apikey'=> 'test'
     }
@@ -41,7 +41,7 @@ class Workflow
 
   def getApproveParam(sn,loginId)
     approve = 
-    {
+      {
       'sn' => sn,
       'loginId' => loginId,
       'actionString' => '同意',
@@ -57,30 +57,51 @@ class Workflow
   end
 
   def getTaskList(loginId,procInstanceId)
-    @client.call(:get_task_list,message: getTaskListParam(loginId,procInstanceId)).body[:get_task_list_response][:get_task_list_result][:result_list][:my_task_dto][:sn]
+    @client.call(:get_task_list,message: getTaskListParam(loginId,procInstanceId)).body[:get_task_list_response][:get_task_list_result][:result_list][:my_task_dto]
   end
 
+  def getLoginIdByTaskDto(task_dto)
+      loginId = task_dto[:login_ids][:int]
+      if(Array.try_convert(loginId)!=nil)
+        loginId = loginId[0]
+      end
+      loginId
+  end
   def finWorkflow(procInstanceId)
     task_dto = getProcessStatus(procInstanceId)
     activity = task_dto[:activity]
     while (!activity.eql?'流程结束') do
       task_dto = getProcessStatus(procInstanceId)
       activity = task_dto[:activity]
+      loginId = getLoginIdByTaskDto(task_dto)
       puts task_dto.inspect
-      loginId = task_dto[:login_ids][:int]
-      if(Array.try_convert(loginId)!=nil)
-        loginId = loginId[0]
-      end
-      sn = getTaskList(loginId,procInstanceId)
+      sn = getTaskList(loginId,procInstanceId)[:sn]
       approve(sn,loginId)
       puts sn
     end
   end
+  def getReassignParam(sn,fromLoginId,toLoginId,toName)
+    reAssignTask = 
+    {
+      'sn' => sn,
+      'assignFromLoginId' => fromLoginId,
+      'assignFromRealName' => '管理员',
+      'assignToLoginId' => toLoginId,
+      'assignToRealName' => toName,
+      'isAddLog' => true,
+      'apiKey' => 'test',
+    }
 
+  end
+
+  def reassign(procInstanceId,toLoginId,toName)
+    task_dto = getProcessStatus(procInstanceId)
+    fromLoginId = getLoginIdByTaskDto(task_dto)
+    puts task_dto.inspect
+    sn = getTaskList(fromLoginId,procInstanceId)[:sn]
+    @client.call(:re_assign_task,message: getReassignParam(sn,fromLoginId,toLoginId,toName))
+  end
 end
 
 workflow = Workflow.new()
-[1084992,1084993,1105695,1105696].each do |procInstanceId|
-  workflow.finWorkflow(procInstanceId)
-end
-
+workflow.reassign(753275,-14615,'吴玺')
