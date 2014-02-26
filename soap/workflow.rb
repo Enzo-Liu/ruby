@@ -39,17 +39,17 @@ class Workflow
     request['queryPara']['PagingInfo']['PageIndex'] = index
   end
 
-  def getApproveParam(sn,loginId)
+  def getApproveParam(sn,loginId,actionString)
     approve = 
       {
       'sn' => sn,
       'loginId' => loginId,
-      'actionString' => '同意',
+      'actionString' => actionString,
       'apikey' => 'test'
     }
   end
-  def approve(sn,loginId)
-    @client.call(:approve, message: getApproveParam(sn,loginId))
+  def approve(sn,loginId,actionString)
+    @client.call(:approve, message: getApproveParam(sn,loginId,actionString))
   end
 
   def getProcessStatus(procInstanceId)
@@ -76,7 +76,7 @@ class Workflow
       loginId = getLoginIdByTaskDto(task_dto)
       puts task_dto.inspect
       sn = getTaskList(loginId,procInstanceId)[:sn]
-      approve(sn,loginId)
+      approve(sn,loginId,'同意')
       puts sn
     end
   end
@@ -94,6 +94,14 @@ class Workflow
 
   end
 
+  def reject(procInstanceId,status)
+    task_dto = getProcessStatus(procInstanceId)
+    fromLoginId = getLoginIdByTaskDto(task_dto)
+    puts task_dto.inspect
+    sn = getTaskList(fromLoginId,procInstanceId)[:sn]
+    actionString = status ? "打回AE" : "同意"
+    approve(sn,fromLoginId,actionString)
+  end
   def reassign(procInstanceId,toLoginId,toName)
     task_dto = getProcessStatus(procInstanceId)
     fromLoginId = getLoginIdByTaskDto(task_dto)
@@ -104,4 +112,4 @@ class Workflow
 end
 
 workflow = Workflow.new()
-workflow.reassign(753275,-14615,'吴玺')
+workflow.reject(1105323,false)
