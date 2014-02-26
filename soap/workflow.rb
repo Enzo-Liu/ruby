@@ -1,70 +1,86 @@
 require 'savon'
 
-# create a client for the service
-client = Savon.client(wsdl: 'http://wfapi.sys.www.dianping.com/WebService/WorkFlowService.asmx?wsdl',log_level: :info,log: false)
+class Workflow
+  def initialize
+    # create a client for the service
+    @client = Savon.client(wsdl: 'http://wfapi.sys.www.dianping.com/webservice/workflowservice.asmx?wsdl',log_level: :info,log: false)
+  end
 
-#Savon.client(log: false)
+  #Savon.client(log: false)
 
-getTaskListParam = 
-{ 'queryPara' => 
-  {'PagingInfo' => 
-    {
-      'PageSize'=> 10,
-      'PageIndex'=> 1,
-      'SortOrder'=> 'Ascending'
+  def getTaskListParam(loginId,procInstanceId)
+    getTaskListParam = 
+    { 'queryPara' => 
+      {'PagingInfo' => 
+        {
+          'PageSize'=> 10,
+          'PageIndex'=> 1,
+          'SortOrder'=> 'Ascending'
+          },
+        'QueryCriteria'=> 
+        {
+          'LoginId'=> loginId,
+          'ProcInstId'=> {'int'=>procInstanceId}
+        }
       },
-    'QueryCriteria'=> 
-    {
-      'LoginId'=> 10000,
-      'TaskStartDate'=>
-      {
-        'DateFrom'=>'2014-01-28T00:00:00.00',
-        'DateTo'=>'2014-01-29T00:00:00.00'
-      }
+      'apikey'=> 'test'
     }
-  },
-  'apikey'=> 'test'
-}
+  end
 
-def getProcessParam(procInstanceId) 
-  getProcessStatus = 
-  { 
-    'procInstId' => procInstanceId,
-    'apikey'=> 'test'
-  }
+  def getProcessParam(procInstanceId) 
+    getProcessStatus = 
+    { 
+      'procInstId' => procInstanceId,
+      'apikey'=> 'test'
+    }
+  end
+
+  def changePageIndex(request,index)
+    request['queryPara']['PagingInfo']['PageIndex'] = index
+  end
+
+  def getApproveParam(sn,loginId)
+    approve = 
+    {
+      'sn' => sn,
+      'loginId' => loginId,
+      'actionString' => '同意',
+      'apikey' => 'test'
+    }
+  end
+  def approve(sn,loginId)
+    @client.call(:approve, message: getApproveParam(sn,loginId))
+  end
+
+  def getProcessStatus(procInstanceId)
+    @client.call(:get_process_status,message: getProcessParam(procInstanceId)).body[:get_process_status_response][:get_process_status_result][:k2_status_dto]
+  end
+
+  def getTaskList(loginId,procInstanceId)
+    @client.call(:get_task_list,message: getTaskListParam(loginId,procInstanceId)).body[:get_task_list_response][:get_task_list_result][:result_list][:my_task_dto][:sn]
+  end
+
+  def finWorkflow(procInstanceId)
+    task_dto = getProcessStatus(procInstanceId)
+    activity = task_dto[:activity]
+    while (!activity.eql?'流程结束') do
+      task_dto = getProcessStatus(procInstanceId)
+      activity = task_dto[:activity]
+      puts task_dto.inspect
+      loginId = task_dto[:login_ids][:int]
+      if(Array.try_convert(loginId)!=nil)
+        loginId = loginId[0]
+      end
+      sn = getTaskList(loginId,procInstanceId)
+      approve(sn,loginId)
+      puts sn
+    end
+  end
+
 end
 
-def changePageIndex(request,index)
-  request['queryPara']['PagingInfo']['PageIndex'] = index
-end
-
-
-#[1037152].each do |procInstanceId|
-#  response = client.call(:get_process_status,message: getProcessParam(procInstanceId))
-#  task_dto= response.body[:get_process_status_response][:get_process_status_result][:k2_status_dto]
-#  puts "procInstanceId is #{procInstanceId},folio is #{task_dto[:folio]}, activity is #{task_dto[:activity]}" if task_dto[:folio]!=nil
-#end
-
- response = client.call(:get_task_list,message: getTaskListParam)
- pageCount = response.body[:get_task_list_response][:get_task_list_result][:paging_info][:page_count]
-# 
-#puts response.body[:get_task_list_response][:get_task_list_result][:result_list][:my_task_dto][0]
-# # {:proc_inst_id=>"862677", :sn=>"862677_23", :url=>"/#!/admin/deal-group/edit/Processing.aspx?SN=862677_23", :folio=>"80090000000hZBWAA2,2089014", :originator_login_id=>"-26317", :process_code=>"PCTGOrderProduce", :task_start_date=>#<DateTime: 2013-12-24T17:51:53+00:00 ((2456651j,64313s,103000000n),+0s,2299161j)>, :process_start_date=>#<DateTime: 2013-12-24T16:47:37+00:00 ((2456651j,60457s,757000000n),+0s,2299161j)>}
- def handleItem(item)
-   puts "procInstId"+item[:proc_inst_id]+";folio"+item[:folio]+";sn"+item[:sn]+item[:task_start_date].to_s
- end
-# 
-# 
- 1.upto(pageCount.to_i) do |i|
-   changePageIndex(getTaskListParam,i)
-   response = client.call(:get_task_list,message: getTaskListParam)
-   body = response.body
-   result = body[:get_task_list_response][:get_task_list_result]
-   resultList = result[:result_list][:my_task_dto] if result[:result_list]!=nil
-   pageInfo = result[:paging_info]
-   resultList.each{|item|
-     handleItem(item)
-   }
-   
+workflow = Workflow.new()
+[1084992,1084993,1105695,1105696].each do |procInstanceId|
+  workflow.finWorkflow(procInstanceId)
 end
 
