@@ -4,9 +4,9 @@ require 'json'
 class Online
   def initialize
     @domain ="http://tgplatform.sys.www.dianping.com/"
-    @headers = {"cookie"=>'dpadmin=46cae279621d9ebd3c9b4a1882cf5730308bc6483e560672b7267455ae89041bb01c1f2d779ba419938f94d581af43afd3f4a93048ad430616ffc0d96dcd7503;'}
+    @headers = {"cookie"=>'dpadmin=f07408d09a36967867ecb5efb57233f4b6c1e6cec9fde74be56660dc03290a2c711efc3ac2970b2fdff977e0e3c68337ca36e16e845e344db1e7c6b794fe0a0f;'}
   end
-  include HttpGet 
+  include HttpGet
 end
 class Dev
   def initialize
@@ -15,7 +15,7 @@ class Dev
   end
   include HttpGet
 end
-  
+
 class Beta
   def initialize
     @domain ="http://tgplatform.a.51ping.com/"
@@ -24,14 +24,7 @@ class Beta
   include HttpGet
 end
 
-text = File.open("/Users/liuenze/Desktop/data.csv").read
- online = Online.new()
- num = 0
-text.split(',')
-.each do |dealGroupId|
-  if (num>=9516)
-    online.extend(dealGroupId,"2014-03-31 00:00:00")
-  end
-  num+=1
-  puts num
+online = Online.new()
+[].each do |dealGroupId|
+  online.hide(dealGroupId)
 end
