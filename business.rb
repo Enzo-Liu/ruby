@@ -4,7 +4,7 @@ require 'json'
 class Online
   def initialize
     @domain ="http://tgplatform.sys.www.dianping.com/"
-    @headers = {"cookie"=>'dpadmin=f07408d09a36967867ecb5efb57233f4b6c1e6cec9fde74be56660dc03290a2c711efc3ac2970b2fdff977e0e3c68337ca36e16e845e344db1e7c6b794fe0a0f;'}
+    @headers = {"cookie"=>'dpadmin=058b0fca21147efd1730c4d31579bc0b32358a504181253a193b6944f471d585f66a47c65171d4207e33f81d490558f8d71dafd178446d56517c3399e3351acd;'}
   end
   include HttpGet
 end
@@ -23,8 +23,8 @@ class Beta
   end
   include HttpGet
 end
-
+text = File.open('/Users/liuenze/Downloads/data.txt').read
 online = Online.new()
-[].each do |dealGroupId|
-  online.hide(dealGroupId)
+text.split(',').each do |dealGroupId|
+  online.publish(dealGroupId)
 end
