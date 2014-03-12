@@ -1,10 +1,10 @@
-require "./http.rb"
+require_relative "http.rb"
 require 'json'
 
 class Online
-  def initialize
+  def initialize(cookie)
     @domain ="http://tgplatform.sys.www.dianping.com/"
-    @headers = {"cookie"=>'dpadmin=058b0fca21147efd1730c4d31579bc0b32358a504181253a193b6944f471d585f66a47c65171d4207e33f81d490558f8d71dafd178446d56517c3399e3351acd;'}
+    @headers = {"cookie"=>'dpadmin=#{cookie};'}
   end
   include HttpGet
 end
@@ -22,9 +22,4 @@ class Beta
     @headers = {"cookie"=>'dpadmin=d2a9dbebb0a821ec858f2fc28dac5789d493a6846cf0f5866363b50885bc1ec0d3bcb49ce919a74c7a3e872b1ce9525a1e48eb2e5dafb50490d6a71430b004f4;'}
   end
   include HttpGet
-end
-text = File.open('/Users/liuenze/Downloads/data.txt').read
-online = Online.new()
-text.split(',').each do |dealGroupId|
-  online.publish(dealGroupId)
 end
