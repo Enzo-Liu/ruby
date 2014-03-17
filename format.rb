@@ -1,10 +1,9 @@
-File.open("LATIN1") do |file|  
-  file.each_line{|line| 
-    begin 
-      puts line.encode!("ISO-8859-1").force_encoding("UTF-8")  
-    rescue
-      puts line
-    end
-  }  
-file.close();  
+target = File.open("/Users/liuenze/Desktop/data.csv").read.split("\r")
+File.open("/Users/liuenze/Desktop/source.csv") do |file|  
+  text = file.read.split("\r").keep_if{ |line|
+    target.include?(line.split(",")[2])
+  }
+  text.each{ |line|
+    puts line
+  }
 end
