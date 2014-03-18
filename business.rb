@@ -4,7 +4,7 @@ require 'json'
 class Online
   def initialize(cookie)
     @domain ="http://tgplatform.sys.www.dianping.com/"
-    @headers = {"cookie"=>'dpadmin=#{cookie};'}
+    @headers = {"cookie"=>"dpadmin=#{cookie};"}
   end
   include HttpGet
 end
