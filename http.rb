@@ -10,7 +10,7 @@ module HttpGet
         http.request(req)
     end
   end
-  
+
   def postForm(uri,form_data)
     req = Net::HTTP::Post.new(uri,@headers)
     req.set_form_data(form_data) 
@@ -18,25 +18,25 @@ module HttpGet
         http.request(req)
       end
   end
-  
+
   adminMethodName={:publish=>"publish/fullPublish",:offline=>"admin/offline",:hide=>"admin/changeHideStatus"}
-  
+
   adminMethodName.each do |name,value|
     define_method name.to_s do |dealGroupId|
       uri = URI::parse(@domain+"#{value}?dealGroupId=#{dealGroupId}")  
       puts "#{dealGroupId}"+"--"+name.to_s+"--"+getFromUri(uri).body
     end
   end
-      
+
   method_name = {:changeStatus=>"operation/setStatusId",:changeValid=>"operation/setIsValid",:copySpecial=>"hotel/reCopySpecialReminder"}
-  
+
   method_name.each do |name,value|
     define_method name.to_s do |dealGroupId,form_data|
       uri = URI::parse(@domain+value) 
       puts "#{dealGroupId}"+"--"+name.to_s+"--"+postForm(uri,form_data).body
     end
   end
-  
+
 
   def extend(dealGroupId,toDate)
     uri = URI::parse(URI.encode(@domain+"action/test/modifyEndDate"))
