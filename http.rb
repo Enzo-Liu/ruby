@@ -37,6 +37,10 @@ module HttpGet
     end
   end
 
+  def resync(dealGroupIds)
+    uri = URI::parse(@domain+"backdoor/reSyncAndPublish?dealGroupIds=#{dealGroupIds}")
+    puts "#{dealGroupIds}"+"--resync--"+getFromUri(uri).body
+  end
 
   def extend(dealGroupId,toDate)
     uri = URI::parse(URI.encode(@domain+"action/test/modifyEndDate"))

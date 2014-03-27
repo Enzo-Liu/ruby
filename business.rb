@@ -23,3 +23,14 @@ class Beta
   end
   include HttpGet
 end
+
+online = Online.new("22c49ff338cfd3d1c61e80e9f117858fb6a87f96bf1d3eaa682d92f7329ee0d76e3a14c2489a0a5cb8e38dccfa484aed7552981778172dea9733d3876ced8552")
+
+text = File.open("/Users/liuenze/Desktop/query_result.csv").read
+text.gsub!(/\r\n?/,"\n")
+text.each_line do |line|
+  dealGroupId = line
+  online.resync(dealGroupId) 
+  puts dealGroupId
+end
+
