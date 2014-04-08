@@ -3,35 +3,36 @@ require 'savon'
 class Workflow
   def initialize
     # create a client for the service
-    @client = Savon.client(wsdl: 'http://wfapi.sys.www.dianping.com/webservice/workflowservice.asmx?wsdl',log_level: :info,log: false)
+    @client = Savon.client(wsdl: 'http://wfapi.sys.www.dianping.com/webservice/workflowservice.asmx?wsdl',log_level: :debug,log: true,env_namespace: :soap,soap_version: 2)
   end
 
   #Savon.client(log: false)
 
   def getTaskListParam(loginId,procInstanceId)
-    getTaskListParam = 
-      { 'queryPara' => 
-        {'PagingInfo' => 
+    getTaskListParam =
+      { 'queryPara' =>
+        {'PagingInfo' =>
          {
            'PageSize'=> 10,
            'PageIndex'=> 1,
            'SortOrder'=> 'Ascending'
          },
-         'QueryCriteria'=> 
+         'QueryCriteria'=>
          {
            'LoginId'=> loginId,
            'ProcInstId'=> {'int'=>procInstanceId}
          }
         },
-        'apikey'=> 'test'
+        'apiKey'=> 'test'
     }
   end
 
-  def getProcessParam(procInstanceId) 
-    getProcessStatus = 
-      { 
+  def getProcessParam(procInstanceId)
+    getProcessStatus =
+      {
       'procInstId' => procInstanceId,
-      'apikey'=> 'test'
+      'folio' => '',
+      'apiKey'=> 'test'
     }
   end
 
@@ -40,12 +41,12 @@ class Workflow
   end
 
   def getApproveParam(sn,loginId,actionString)
-    approve = 
+    approve =
       {
       'sn' => sn,
       'loginId' => loginId,
       'actionString' => actionString,
-      'apikey' => 'test'
+      'apiKey' => 'test'
     }
   end
   def approve(sn,loginId,actionString)
@@ -81,7 +82,7 @@ class Workflow
     end
   end
   def getReassignParam(sn,fromLoginId,toLoginId,toName)
-    reAssignTask = 
+    reAssignTask =
     {
       'sn' => sn,
       'assignFromLoginId' => fromLoginId,
@@ -112,4 +113,4 @@ class Workflow
 end
 
 workflow = Workflow.new()
-workflow.finWorkflow(725753)
+workflow.finWorkflow(867907)
