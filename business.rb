@@ -24,13 +24,10 @@ class Beta
   include HttpGet
 end
 
-online = Online.new("22c49ff338cfd3d1c61e80e9f117858fb6a87f96bf1d3eaa682d92f7329ee0d76e3a14c2489a0a5cb8e38dccfa484aed7552981778172dea9733d3876ced8552")
+online = Online.new("16e4749b3f034689471dfadb7d5a62051028f13a8f6781520921abf043db683eda7b480b1163ff4185e6a9e9c050f466da06b1769a622930c18e01629479882b")
 
-text = File.open("/Users/liuenze/Desktop/query_result.csv").read
-text.gsub!(/\r\n?/,"\n")
-text.each_line do |line|
-  dealGroupId = line
-  online.resync(dealGroupId) 
+  [2028453,2028473].each do |dealGroupId|
+  online.offline(dealGroupId)
   puts dealGroupId
 end
 
