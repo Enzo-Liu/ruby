@@ -7,6 +7,7 @@ def read(h)
   when Hash
     h.each {|a,b|
       puts b if a=="value"
+      print b+"\t" if a=="text"
       read(b)}
   when Array
     h.each {|b| read(b) }
