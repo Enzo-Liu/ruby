@@ -24,10 +24,18 @@ class Beta
   include HttpGet
 end
 
-online = Online.new("16e4749b3f034689471dfadb7d5a62051028f13a8f6781520921abf043db683eda7b480b1163ff4185e6a9e9c050f466da06b1769a622930c18e01629479882b")
+online = Online.new("3ee2e005d678560bacb8402b479e4aef073f6fbe5a5d266ea8434a7c29a7d6c1a690d0695fa1caa480344216d9fa1bef787b24a09a5b9ecec230f9bd1dba991f")
 
-  [2028453,2028473].each do |dealGroupId|
-  online.offline(dealGroupId)
-  puts dealGroupId
+#data = File.open('/home/vagrant/host/Desktop/full_proctId.txt')
+#data.each do |procInstId|
+#  procInstId = procInstId.strip!||procInstId
+#  data = online.getProcessStatus(procInstId).body.force_encoding("utf-8")
+#  puts procInstId if data.include?("\"LoginID\":100,\"Memo\":\"提交小编制作\"") && !data.include?("付轶哲")
+#end
+data = File.open('/home/vagrant/host/Desktop/full_handle.txt')
+data.each do |dealGroupId|
+  dealGroupId = dealGroupId.strip!||dealGroupId
+  online.submitProduce(dealGroupId)
 end
+
 

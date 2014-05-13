@@ -113,4 +113,8 @@ class Workflow
 end
 
 workflow = Workflow.new()
-workflow.finWorkflow(867907)
+data = File.open('/home/vagrant/host/Desktop/full_handle.txt')
+data.each do |procInstId|
+  procInstId = procInstId.strip!||procInstId
+  workflow.reject(procInstId,true)
+end
