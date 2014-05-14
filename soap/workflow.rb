@@ -3,7 +3,7 @@ require 'savon'
 class Workflow
   def initialize
     # create a client for the service
-    @client = Savon.client(wsdl: 'http://wfapi.sys.www.dianping.com/webservice/workflowservice.asmx?wsdl',log_level: :debug,log: true,env_namespace: :soap,soap_version: 2)
+    @client = Savon.client(wsdl: 'http://wfapi.sys.www.dianping.com/webservice/workflowservice.asmx?wsdl',log_level: :debug,log: false,env_namespace: :soap,soap_version: 2)
   end
 
   #Savon.client(log: false)
@@ -62,6 +62,8 @@ class Workflow
   end
 
   def getLoginIdByTaskDto(task_dto)
+      puts task_dto[:proc_inst_id] if task_dto[:login_ids] == nil
+      return 999999 if task_dto[:login_ids] == nil
       loginId = task_dto[:login_ids][:int]
       if(Array.try_convert(loginId)!=nil)
         loginId = loginId[0]
@@ -98,8 +100,9 @@ class Workflow
   def reject(procInstanceId,status)
     task_dto = getProcessStatus(procInstanceId)
     fromLoginId = getLoginIdByTaskDto(task_dto)
-    puts task_dto.inspect
-    sn = getTaskList(fromLoginId,procInstanceId)[:sn]
+    return 0 if fromLoginId == 999999
+    data = getTaskList(fromLoginId,procInstanceId)
+    sn = data[:sn]
     actionString = status ? "打回AE" : "同意"
     approve(sn,fromLoginId,actionString)
   end
@@ -113,7 +116,7 @@ class Workflow
 end
 
 workflow = Workflow.new()
-data = File.open('/home/vagrant/host/Desktop/full_handle.txt')
+data = File.open('/home/vagrant/host/Desktop/handle.txt')
 data.each do |procInstId|
   procInstId = procInstId.strip!||procInstId
   workflow.reject(procInstId,true)

@@ -24,18 +24,19 @@ class Beta
   include HttpGet
 end
 
-online = Online.new("3ee2e005d678560bacb8402b479e4aef073f6fbe5a5d266ea8434a7c29a7d6c1a690d0695fa1caa480344216d9fa1bef787b24a09a5b9ecec230f9bd1dba991f")
+online = Online.new("732f4c67ae05629964db337fc393c8410a121ec4187152d6f2bc371fb814b3d7ee15f6f01c996559a9207ddb59d162414e019ce363619fc14f47d3c8388d5f91")
 
-#data = File.open('/home/vagrant/host/Desktop/full_proctId.txt')
+#data = File.open('/home/vagrant/host/Desktop/data.txt')
 #data.each do |procInstId|
 #  procInstId = procInstId.strip!||procInstId
 #  data = online.getProcessStatus(procInstId).body.force_encoding("utf-8")
-#  puts procInstId if data.include?("\"LoginID\":100,\"Memo\":\"提交小编制作\"") && !data.include?("付轶哲")
+#  puts procInstId if data=~/\"ActivityName":"小编",[^\]]*\"Memo\":\"提交小编制作\"/i && !data.include?("付轶哲")
 #end
-data = File.open('/home/vagrant/host/Desktop/full_handle.txt')
+#data = File.open('/home/vagrant/host/Desktop/handle.txt')
+data = [80278,6079098,171471,6080086,2038752,6078930,6078947]
 data.each do |dealGroupId|
-  dealGroupId = dealGroupId.strip!||dealGroupId
-  online.submitProduce(dealGroupId)
+  #dealGroupId = dealGroupId.strip!||dealGroupId
+  online.publish(dealGroupId)
 end
 
 
