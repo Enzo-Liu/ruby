@@ -1,6 +1,7 @@
 require "open-uri"
 require "net/https"
 require "uri"
+require "json"
 
 module HttpGet
   attr_reader :headers,:domain
@@ -14,6 +15,7 @@ module HttpGet
   def postForm(uri,form_data)
     req = Net::HTTP::Post.new(uri,@headers)
     req.set_form_data(form_data)
+    req["Content-Type"] = "application/x-www-form-urlencoded; charset=UTF-8"
     res = Net::HTTP.start(uri.host) do |http|
         http.request(req)
       end
@@ -49,9 +51,25 @@ module HttpGet
     postForm(uri,form_data)
   end
 
+  def reSave(dealGroupId)
+    uri = URI::parse(URI.encode(@domain+"dealGroup/loadPage?dealGroupId=#{dealGroupId}"))
+    data = JSON.parse(getFromUri(uri).body)["msg"]
+    newData = {}
+    newData["type"] = "DealGroup.Edit"
+    newData["children"]=data
+    form_data={"dealGroupId"=>"#{dealGroupId}","data"=>newData.to_json}
+    uri = URI::parse(URI.encode(@domain+"dealGroup/saveProperty"))
+    puts postForm(uri,form_data).body
+  end
+
   def getProcessStatus(procInstId)
     uri = URI::parse("http://wfapi.sys.www.dianping.com/Http/GetProcessComments.ashx?procInstIds=#{procInstId}&apikey=test")
     getFromUri(uri)
+  end
+
+  def publishTemplate(templateId)
+    uri = URI::parse("http://apollo.51ping.com/aa/template/publish?templateId=#{templateId}")
+    puts getFromUri(uri).body
   end
 end
 

@@ -4,7 +4,7 @@ require 'json'
 class Online
   def initialize(cookie)
     @domain ="http://tgplatform.sys.www.dianping.com/"
-    @headers = {"cookie"=>"dpadmin=#{cookie};"}
+    @headers = {"cookie"=>"#{cookie}"}
   end
   include HttpGet
 end
@@ -24,7 +24,7 @@ class Beta
   include HttpGet
 end
 
-online = Online.new("732f4c67ae05629964db337fc393c8410a121ec4187152d6f2bc371fb814b3d7ee15f6f01c996559a9207ddb59d162414e019ce363619fc14f47d3c8388d5f91")
+online = Online.new("PHOENIX_ID=c0a8d542-144f81f5fad-329f; _tr.u=H61sXDbxzgur9hfw; p_sys_www=oqyrcpevkyg5hd45q2z2az3v; dpadmin=2e03863c28838e03d32508d7a332c4cbd6117653cb4d0261a4cb06eaa9fec4c18e8a6df5268cf38f4d6b0e6cf487130a93a4d9b805c87ce45c5870bf7e60437b; tc=3; cy=3; cye=hangzhou; t_track=D6271724:D8500737:D8501039:D500353:D500353:D6107306:D500353:D8631995:D8631995:D8631995:D500353:D500353; t_rct=500353|8631995|6107306|8501039|8500737; ab=; _ga=GA1.2.1472348451.1405907819; ticket=AAFSsPYAkNKN6Mb0Q6Li8D8gawrtLCxK6FUlEn6CyaZm3ZsvAkdC3b8s; JSESSIONID=8F19487B2C45414F9BB38FF1D2CC6977")
 
 #data = File.open('/home/vagrant/host/Desktop/data.txt')
 #data.each do |procInstId|
@@ -33,10 +33,10 @@ online = Online.new("732f4c67ae05629964db337fc393c8410a121ec4187152d6f2bc371fb81
 #  puts procInstId if data=~/\"ActivityName":"小编",[^\]]*\"Memo\":\"提交小编制作\"/i && !data.include?("付轶哲")
 #end
 #data = File.open('/home/vagrant/host/Desktop/handle.txt')
-data = [80278,6079098,171471,6080086,2038752,6078930,6078947]
+data = [1,11,12,14,15,16,17,18,19,20,21,22,23,24,26,27,28,29,30,32,33,34,35,36,37,57,59,63,64,65,66,68,70,72,73,81,88,89,90,91,92,94,95,96,97,98,99,100,101,102,103,104,109,110,111,112,113,114,115,117,122,123,124,126,127,128,129,133,134,135,136,137,138,139]
 data.each do |dealGroupId|
   #dealGroupId = dealGroupId.strip!||dealGroupId
-  online.publish(dealGroupId)
+  online.publishTemplate(dealGroupId)
 end
 
 
