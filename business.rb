@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 require_relative "http.rb"
 require 'json'
 
@@ -24,7 +25,7 @@ class Beta
   include HttpGet
 end
 
-online = Online.new("PHOENIX_ID=c0a8d542-144f81f5fad-329f; _tr.u=H61sXDbxzgur9hfw; p_sys_www=oqyrcpevkyg5hd45q2z2az3v; dpadmin=2e03863c28838e03d32508d7a332c4cbd6117653cb4d0261a4cb06eaa9fec4c18e8a6df5268cf38f4d6b0e6cf487130a93a4d9b805c87ce45c5870bf7e60437b; tc=3; cy=3; cye=hangzhou; t_track=D6271724:D8500737:D8501039:D500353:D500353:D6107306:D500353:D8631995:D8631995:D8631995:D500353:D500353; t_rct=500353|8631995|6107306|8501039|8500737; ab=; _ga=GA1.2.1472348451.1405907819; ticket=AAFSsPYAkNKN6Mb0Q6Li8D8gawrtLCxK6FUlEn6CyaZm3ZsvAkdC3b8s; JSESSIONID=8F19487B2C45414F9BB38FF1D2CC6977")
+online = Online.new("_ga=GA1.2.31529738.1405997284; ticket=AAFSsPYAkNKN6Mb0Q6Li8D8gawrtLLqSxHuVzeS4EIPJ2DqO5LYAE3OO; JSESSIONID=D878A597CE50B26D89BEABD49BE033F1")
 
 #data = File.open('/home/vagrant/host/Desktop/data.txt')
 #data.each do |procInstId|
@@ -38,5 +39,3 @@ data.each do |dealGroupId|
   #dealGroupId = dealGroupId.strip!||dealGroupId
   online.publishTemplate(dealGroupId)
 end
-
-

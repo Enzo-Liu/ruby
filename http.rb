@@ -68,9 +68,7 @@ module HttpGet
   end
 
   def publishTemplate(templateId)
-    uri = URI::parse("http://apollo.51ping.com/aa/template/publish?templateId=#{templateId}")
+    uri = URI::parse("https://ppea.dper.com/aa/template/publish?templateId=#{templateId}")
     puts getFromUri(uri).body
   end
 end
-
-

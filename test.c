@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <math.h>
+#include <string.h>
 
 int f(int x)
 {
@@ -17,5 +18,6 @@ int main()
     if(1)
       printf("test\n");
 
+    printf("%d\n",(int)strlen("test"));
     return 0;
 }
