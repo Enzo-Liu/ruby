@@ -5,10 +5,19 @@ require 'json'
 class Online
   def initialize(cookie)
     @domain ="http://tgplatform.sys.www.dianping.com/"
-    @headers = {"cookie"=>"#{cookie}"}
+    @headers = {"Cookie"=>"#{cookie}","User-Agent"=>"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.94 Safari/537.36"}
   end
   include HttpGet
 end
+
+class NOnline
+  def initialize(cookie)
+    @domain ="https://a.dper.com/dt/"
+    @headers = {"User-Agent"=> "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.94 Safari/537.36","Content-Type"=>"text/plain; charset=utf-8","Accept"=>"*/*","Accept-Encoding"=>"gzip,deflate","Accept-Language"=>"en-US,en;q=0.8,zh-CN;q=0.6,zh;q=0.4,zh-TW;q=0.2","Cookie"=>#{cookie}}
+  end
+  include HttpGet
+end
+
 class Dev
   def initialize
     @domain ="http://t.sys.local.dp:8080/"
@@ -25,7 +34,7 @@ class Beta
   include HttpGet
 end
 
-online = Online.new("_ga=GA1.2.31529738.1405997284; ticket=AAFSsPYAkNKN6Mb0Q6Li8D8gawrtLLqSxHuVzeS4EIPJ2DqO5LYAE3OO; JSESSIONID=D878A597CE50B26D89BEABD49BE033F1")
+online = NOnline.new("BIGipServertp-deal-admin-web=3496542474.20480.0000; __utma=126175325.31529738.1405997284.1409016443.1409039709.3; __utmc=126175325; __utmz=126175325.1408818111.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); _ga=GA1.2.31529738.1405997284; JSESSIONID=665DD9141523796A1081E75E2A721D15; ticket=AAFSsPYAkNKN6Mb0Q6Li8D8gawrtLEuqYEC4Oc/u9inq0dN5MjFqm+pv")
 
 #data = File.open('/home/vagrant/host/Desktop/data.txt')
 #data.each do |procInstId|
@@ -34,8 +43,8 @@ online = Online.new("_ga=GA1.2.31529738.1405997284; ticket=AAFSsPYAkNKN6Mb0Q6Li8
 #  puts procInstId if data=~/\"ActivityName":"小编",[^\]]*\"Memo\":\"提交小编制作\"/i && !data.include?("付轶哲")
 #end
 #data = File.open('/home/vagrant/host/Desktop/handle.txt')
-data = [1,11,12,14,15,16,17,18,19,20,21,22,23,24,26,27,28,29,30,32,33,34,35,36,37,57,59,63,64,65,66,68,70,72,73,81,88,89,90,91,92,94,95,96,97,98,99,100,101,102,103,104,109,110,111,112,113,114,115,117,122,123,124,126,127,128,129,133,134,135,136,137,138,139]
+data = []
 data.each do |dealGroupId|
   #dealGroupId = dealGroupId.strip!||dealGroupId
-  online.publishTemplate(dealGroupId)
+  online.hide_new(dealGroupId,"")
 end

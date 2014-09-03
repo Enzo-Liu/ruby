@@ -6,10 +6,11 @@ require "json"
 module HttpGet
   attr_reader :headers,:domain
   def getFromUri(uri)
-    req = Net::HTTP::Get.new(uri,@headers)
-    res = Net::HTTP.start(uri.host) do |http|
-        http.request(req)
-    end
+    http = Net::HTTP.new(uri.host,uri.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    req = Net::HTTP::Get.new(uri.request_uri,@headers)
+    res = http.request(req)
   end
 
   def postForm(uri,form_data)
@@ -44,6 +45,16 @@ module HttpGet
     puts "#{dealGroupIds}"+"--resync--"+getFromUri(uri).body
   end
 
+  def hide_new(dealGroupId,comment)
+    uri = URI::parse(URI.encode(@domain+"admin/changeDisplayStatus?dealGroupId=#{dealGroupId}&displayStatusId=0&comment=#{comment}"))
+    puts "#{dealGroupId}"+"--hide_new--"+getFromUri(uri).body
+  end
+
+  def display_new(dealGroupId,comment)
+    uri = URI::parse(URI.encode(@domain+"admin/changeDisplayStatus?dealGroupId=#{dealGroupId}&displayStatusId=1&comment=#{comment}"))
+    puts "#{dealGroupId}"+"--display_new--"+getFromUri(uri).body
+  end
+
   def extend(dealGroupId,toDate)
     uri = URI::parse(URI.encode(@domain+"action/test/modifyEndDate"))
     form_data={"json"=>"{\"DealGroupID\":#{dealGroupId},\"ReceiptEndDate\":\"#{toDate}\",\"BlackDates\":[]}"}
@@ -68,7 +79,7 @@ module HttpGet
   end
 
   def publishTemplate(templateId)
-    uri = URI::parse("https://ppea.dper.com/aa/template/publish?templateId=#{templateId}")
+    uri = URI::parse("https://a.dper.com/aa/template/publish?templateId=#{templateId}")
     puts getFromUri(uri).body
   end
 end
