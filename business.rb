@@ -13,7 +13,7 @@ end
 class NOnline
   def initialize(cookie)
     @domain ="https://a.dper.com/dt/"
-    @headers = {"User-Agent"=> "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.94 Safari/537.36","Content-Type"=>"text/plain; charset=utf-8","Accept"=>"*/*","Accept-Encoding"=>"gzip,deflate","Accept-Language"=>"en-US,en;q=0.8,zh-CN;q=0.6,zh;q=0.4,zh-TW;q=0.2","Cookie"=>#{cookie}}
+    @headers = {"User-Agent"=> "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.94 Safari/537.36","Content-Type"=>"text/plain; charset=utf-8","Accept"=>"*/*","Accept-Encoding"=>"gzip,deflate","Accept-Language"=>"en-US,en;q=0.8,zh-CN;q=0.6,zh;q=0.4,zh-TW;q=0.2","Cookie"=>"#{cookie}"}
   end
   include HttpGet
 end
@@ -34,7 +34,7 @@ class Beta
   include HttpGet
 end
 
-online = NOnline.new("BIGipServertp-deal-admin-web=3496542474.20480.0000; __utma=126175325.31529738.1405997284.1409016443.1409039709.3; __utmc=126175325; __utmz=126175325.1408818111.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); _ga=GA1.2.31529738.1405997284; JSESSIONID=665DD9141523796A1081E75E2A721D15; ticket=AAFSsPYAkNKN6Mb0Q6Li8D8gawrtLEuqYEC4Oc/u9inq0dN5MjFqm+pv")
+online = NOnline.new("BIGipServertp-deal-admin-web=3496542474.20480.0000; __utma=126175325.31529738.1405997284.1409016443.1409039709.3; __utmc=126175325; __utmz=126175325.1408818111.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); _ga=GA1.2.31529738.1405997284; ticket=AAFSsPYAkNKN6Mb0Q6Li8D8gawrtLHw2Z6TM1MkwuUNJGZ1KAKpuDvAJ; JSESSIONID=C9955B9C142ABEED2BFCDEDF128818F5")
 
 #data = File.open('/home/vagrant/host/Desktop/data.txt')
 #data.each do |procInstId|
@@ -43,8 +43,8 @@ online = NOnline.new("BIGipServertp-deal-admin-web=3496542474.20480.0000; __utma
 #  puts procInstId if data=~/\"ActivityName":"小编",[^\]]*\"Memo\":\"提交小编制作\"/i && !data.include?("付轶哲")
 #end
 #data = File.open('/home/vagrant/host/Desktop/handle.txt')
-data = []
+data = [6396559,6405096,6407437,6411960,6417708,6420902,6426112,6428508,6428698,6429822,6435602,6438642,6439235,6439312,6439954,6441781,6442377,6446533,6446982,6451605,6452755,6459282,6460946,6463765,6472484,6477491,6480381,6481025,6483091,6483631,6483763,6484486,6491340,6491489,6492507,6457645]
 data.each do |dealGroupId|
   #dealGroupId = dealGroupId.strip!||dealGroupId
-  online.hide_new(dealGroupId,"")
+  online.display_new(dealGroupId,"")
 end
