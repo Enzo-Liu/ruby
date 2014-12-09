@@ -82,4 +82,10 @@ module HttpGet
     uri = URI::parse("https://a.dper.com/aa/template/publish?templateId=#{templateId}")
     puts getFromUri(uri).body
   end
+
+  def publishNew(dealGroupId)
+    uri = URI::parse("http://tp-deal-logic-service01.nh:8080/action.jsp")
+    form_data = {"dealGroupIDs"=>"#{dealGroupId}","action"=>"submit"}
+    puts postForm(uri,form_data).body
+  end
 end

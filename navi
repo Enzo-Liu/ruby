@@ -1,421 +1,438 @@
-{"navigationCategory": [
 {
-  "text": "美食",
-  "value": 1,
-  "children": [
-  {
-    "text": "蛋糕甜点",
-    "value": 101,
-    "children": []
-  },
-  {
-    "text": "自助餐",
-    "value": 102,
-    "children": []
-  },
-  {
-    "text": "其它",
-    "value": 103,
-    "children": []
-  }
-  ]
-},
-{
-  "text": "酒店",
-  "value": 2,
-  "children": []
-},
-{
-  "text": "休闲娱乐",
-  "value": 3,
-  "children": [
-  {
-    "text": "KTV",
-    "value": 301,
-    "children": []
-  },
-  {
-    "text": "运动健身",
-    "value": 302,
-    "children": []
-  },
-  {
-    "text": "按摩/足疗",
-    "value": 303,
-    "children": []
-  },
-  {
-    "text": "桑拿/洗浴/汗蒸",
-    "value": 304,
-    "children": []
-  },
-  {
-    "text": "CS/游乐场/游艺厅/卡丁车/棋牌",
-    "value": 305,
-    "children": []
-  },
-  {
-    "text": "桌游/台球",
-    "value": 310,
-    "children": []
-  },
-  {
-    "text": "密室逃脱",
-    "value": 306,
-    "children": []
-  },
-  {
-    "text": "演出/赛事",
-    "value": 307,
-    "children": []
-  },
-  {
-    "text": "DIY手工",
-    "value": 308,
-    "children": []
-  },
-  {
-    "text": "采摘/农家乐",
-    "value": 309,
-    "children": []
-  },
-  {
-    "text": "其它",
-    "value": 311,
-    "children": []
-  }
-  ]
-},
-{
-  "text": "生活服务",
-  "value": 4,
-  "children": [
-  {
-    "text": "体检保健",
-    "value": 401,
-    "children": []
-  },
-  {
-    "text": "汽车服务",
-    "value": 402,
-    "children": []
-  },
-  {
-    "text": "照片冲印",
-    "value": 403,
-    "children": []
-  },
-  {
-    "text": "驾校",
-    "value": 404,
-    "children": []
-  },
-  {
-    "text": "教育培训",
-    "value": 412,
-    "children": []
-  },
-  {
-    "text": "鲜花婚庆",
-    "value": 405,
-    "children": []
-  },
-  {
-    "text": "配眼镜",
-    "value": 406,
-    "children": []
-  },
-  {
-    "text": "服装洗护",
-    "value": 407,
-    "children": []
-  },
-  {
-    "text": "宠物服务",
-    "value": 408,
-    "children": []
-  },
-  {
-    "text": "家政服务",
-    "value": 409,
-    "children": []
-  },
-  {
-    "text": "家具建材/装修设计",
-    "value": 410,
-    "children": []
-  },
-  {
-    "text": "其它",
-    "value": 411,
-    "children": []
-  }
-  ]
-},
-{
-  "text": "丽人",
-  "value": 5,
-  "children": [
-  {
-    "text": "美发",
-    "value": 501,
-    "children": []
-  },
-  {
-    "text": "美甲/美睫",
-    "value": 502,
-    "children": []
-  },
-  {
-    "text": "美容美体SPA",
-    "value": 503,
-    "children": []
-  },
-  {
-    "text": "个性写真",
-    "value": 504,
-    "children": []
-  },
-  {
-    "text": "其它",
-    "value": 505,
-    "children": []
-  }
-  ]
-},
-{
-  "text": "旅游",
-  "value": 6,
-  "children": [
-  {
-    "text": "门票",
-    "value": 601,
-    "children": []
-  },
-  {
-    "text": "交通",
-    "value": 602,
-    "children": []
-  },
-  {
-    "text": "门票+交通",
-    "value": 603,
-    "children": []
-  },
-  {
-    "text": "门票+住宿",
-    "value": 604,
-    "children": []
-  },
-  {
-    "text": "交通+住宿",
-    "value": 605,
-    "children": []
-  },
-  {
-    "text": "门票+交通+住宿",
-    "value": 606,
-    "children": []
-  }
-  ]
-},
-{
-  "text": "购物",
-  "value": 7,
-  "children": [
-  {
-    "text": "服饰鞋包",
-    "value": 701,
-    "children": []
-  },
-  {
-    "text": "生活家居",
-    "value": 702,
-    "children": []
-  },
-  {
-    "text": "食品饮料",
-    "value": 703,
-    "children": []
-  },
-  {
-    "text": "母婴亲子",
-    "value": 704,
-    "children": []
-  },
-  {
-    "text": "化妆护肤",
-    "value": 705,
-    "children": []
-  },
-  {
-    "text": "数码家电",
-    "value": 706,
-    "children": []
-  },
-  {
-    "text": "钟表眼镜",
-    "value": 707,
-    "children": []
-  },
-  {
-    "text": "影音书刊",
-    "value": 708,
-    "children": []
-  },
-  {
-    "text": "水果生鲜",
-    "value": 709,
-    "children": []
-  },
-  {
-    "text": "珠宝饰品",
-    "value": 710,
-    "children": []
-  },
-  {
-    "text": "运动户外",
-    "value": 711,
-    "children": []
-  },
-  {
-    "text": "商场购物劵",
-    "value": 712,
-    "children": []
-  },
-  {
-    "text": "品牌购物劵",
-    "value": 713,
-    "children": []
-  },
-  {
-    "text": "其它",
-    "value": 714,
-    "children": []
-  }
-  ]
-},
-{
-  "text": "电影",
-  "value": 8,
-  "children": [
-  {
-    "text": "院线影院",
-    "value": 801,
-    "children": []
-  },
-  {
-    "text": "私人影院",
-    "value": 802,
-    "children": []
-  },
-  {
-    "text": "电影小食",
-    "value": 803,
-    "children": []
-  }
-  ]
-},
-{
-  "text": "结婚",
-  "value": 9,
-  "children": [
-  {
-    "text": "婚纱摄影",
-    "value": 901,
-    "children": []
-  },
-  {
-    "text": "婚纱定制",
-    "value": 902,
-    "children": []
-  },
-  {
-    "text": "婚纱租赁",
-    "value": 913,
-    "children": []
-  },
-  {
-    "text": "成衣定制",
-    "value": 903,
-    "children": []
-  },
-  {
-    "text": "婚庆公司",
-    "value": 904,
-    "children": []
-  },
-  {
-    "text": "婚戒首饰",
-    "value": 905,
-    "children": []
-  },
-  {
-    "text": "婚礼小商品",
-    "value": 906,
-    "children": []
-  },
-  {
-    "text": "婚车租赁",
-    "value": 907,
-    "children": []
-  },
-  {
-    "text": "彩妆造型",
-    "value": 908,
-    "children": []
-  },
-  {
-    "text": "司仪主持",
-    "value": 909,
-    "children": []
-  },
-  {
-    "text": "婚礼跟拍",
-    "value": 910,
-    "children": []
-  },
-  {
-    "text": "孕产护理",
-    "value": 911,
-    "children": []
-  },
-  {
-    "text": "其它结婚",
-    "value": 912,
-    "children": []
-  }
-  ]
-},
-{
-  "text": "亲子",
-  "value": 10,
-  "children": [
-  {
-    "text": "亲子购物",
-    "value": 1001,
-    "children": []
-  },
-  {
-    "text": "亲子游乐",
-    "value": 1002,
-    "children": []
-  },
-  {
-    "text": "幼儿教育",
-    "value": 1003,
-    "children": []
-  },
-  {
-    "text": "亲子摄影",
-    "value": 1004,
-    "children": []
-  },
-  {
-    "text": "其它亲子",
-    "value": 1005,
-    "children": []
-  }
-  ]
+    "navigationCategory": [
+        {
+            "text": "美食",
+            "value": 1,
+            "children": [
+                {
+                    "text": "蛋糕甜点",
+                    "value": 101,
+                    "children": []
+                },
+                {
+                    "text": "自助餐",
+                    "value": 102,
+                    "children": []
+                },
+                {
+                    "text": "普通美食",
+                    "value": 103,
+                    "children": []
+                }
+            ]
+        },
+        {
+            "text": "酒店",
+            "value": 2,
+            "children": []
+        },
+        {
+            "text": "休闲娱乐",
+            "value": 3,
+            "children": [
+                {
+                    "text": "KTV",
+                    "value": 301,
+                    "children": []
+                },
+                {
+                    "text": "运动健身",
+                    "value": 302,
+                    "children": []
+                },
+                {
+                    "text": "按摩/足疗",
+                    "value": 303,
+                    "children": []
+                },
+                {
+                    "text": "桑拿/洗浴/汗蒸",
+                    "value": 304,
+                    "children": []
+                },
+                {
+                    "text": "桌游/台球",
+                    "value": 310,
+                    "children": []
+                },
+                {
+                    "text": "密室逃脱",
+                    "value": 306,
+                    "children": []
+                },
+                {
+                    "text": "演出/赛事",
+                    "value": 307,
+                    "children": []
+                },
+                {
+                    "text": "DIY手工",
+                    "value": 308,
+                    "children": []
+                },
+                {
+                    "text": "其它",
+                    "value": 311,
+                    "children": []
+                },
+                {
+                    "text": "酒吧",
+                    "value": 312,
+                    "children": []
+                },
+                {
+                    "text": "真人CS/卡丁车",
+                    "value": 313,
+                    "children": []
+                },
+                {
+                    "text": "游艺厅/棋牌室/网吧",
+                    "value": 314,
+                    "children": []
+                },
+                {
+                    "text": "轰趴馆",
+                    "value": 315,
+                    "children": []
+                },
+                {
+                    "text": "农家乐/骑马/采摘/烧烤",
+                    "value": 316,
+                    "children": []
+                }
+            ]
+        },
+        {
+            "text": "生活服务",
+            "value": 4,
+            "children": [
+                {
+                    "text": "体检保健",
+                    "value": 401,
+                    "children": []
+                },
+                {
+                    "text": "汽车服务",
+                    "value": 402,
+                    "children": []
+                },
+                {
+                    "text": "照片冲印",
+                    "value": 403,
+                    "children": []
+                },
+                {
+                    "text": "驾校",
+                    "value": 404,
+                    "children": []
+                },
+                {
+                    "text": "教育培训",
+                    "value": 412,
+                    "children": []
+                },
+                {
+                    "text": "鲜花婚庆",
+                    "value": 405,
+                    "children": []
+                },
+                {
+                    "text": "配眼镜",
+                    "value": 406,
+                    "children": []
+                },
+                {
+                    "text": "服装洗护",
+                    "value": 407,
+                    "children": []
+                },
+                {
+                    "text": "宠物服务",
+                    "value": 408,
+                    "children": []
+                },
+                {
+                    "text": "家政服务",
+                    "value": 409,
+                    "children": []
+                },
+                {
+                    "text": "家具建材/装修设计",
+                    "value": 410,
+                    "children": []
+                },
+                {
+                    "text": "其它",
+                    "value": 411,
+                    "children": []
+                }
+            ]
+        },
+        {
+            "text": "丽人",
+            "value": 5,
+            "children": [
+                {
+                    "text": "美发",
+                    "value": 501,
+                    "children": []
+                },
+                {
+                    "text": "美甲/美睫",
+                    "value": 502,
+                    "children": []
+                },
+                {
+                    "text": "美容美体SPA",
+                    "value": 503,
+                    "children": []
+                },
+                {
+                    "text": "个性写真",
+                    "value": 504,
+                    "children": []
+                },
+                {
+                    "text": "其它",
+                    "value": 505,
+                    "children": []
+                }
+            ]
+        },
+        {
+            "text": "旅游",
+            "value": 6,
+            "children": [
+                {
+                    "text": "门票",
+                    "value": 601,
+                    "children": []
+                },
+                {
+                    "text": "交通",
+                    "value": 602,
+                    "children": []
+                },
+                {
+                    "text": "门票+交通",
+                    "value": 603,
+                    "children": []
+                },
+                {
+                    "text": "门票+住宿",
+                    "value": 604,
+                    "children": []
+                },
+                {
+                    "text": "交通+住宿",
+                    "value": 605,
+                    "children": []
+                },
+                {
+                    "text": "门票+交通+住宿",
+                    "value": 606,
+                    "children": []
+                }
+            ]
+        },
+        {
+            "text": "购物",
+            "value": 7,
+            "children": [
+                {
+                    "text": "服饰鞋包",
+                    "value": 701,
+                    "children": []
+                },
+                {
+                    "text": "生活家居",
+                    "value": 702,
+                    "children": []
+                },
+                {
+                    "text": "食品饮料",
+                    "value": 703,
+                    "children": []
+                },
+                {
+                    "text": "母婴亲子",
+                    "value": 704,
+                    "children": []
+                },
+                {
+                    "text": "化妆护肤",
+                    "value": 705,
+                    "children": []
+                },
+                {
+                    "text": "数码家电",
+                    "value": 706,
+                    "children": []
+                },
+                {
+                    "text": "钟表眼镜",
+                    "value": 707,
+                    "children": []
+                },
+                {
+                    "text": "影音书刊",
+                    "value": 708,
+                    "children": []
+                },
+                {
+                    "text": "水果生鲜",
+                    "value": 709,
+                    "children": []
+                },
+                {
+                    "text": "珠宝饰品",
+                    "value": 710,
+                    "children": []
+                },
+                {
+                    "text": "运动户外",
+                    "value": 711,
+                    "children": []
+                },
+                {
+                    "text": "商场购物劵",
+                    "value": 712,
+                    "children": []
+                },
+                {
+                    "text": "品牌购物劵",
+                    "value": 713,
+                    "children": []
+                },
+                {
+                    "text": "其它",
+                    "value": 714,
+                    "children": []
+                }
+            ]
+        },
+        {
+            "text": "电影",
+            "value": 8,
+            "children": [
+                {
+                    "text": "院线影院",
+                    "value": 801,
+                    "children": []
+                },
+                {
+                    "text": "私人影院",
+                    "value": 802,
+                    "children": []
+                },
+                {
+                    "text": "电影小食",
+                    "value": 803,
+                    "children": []
+                }
+            ]
+        },
+        {
+            "text": "结婚",
+            "value": 9,
+            "children": [
+                {
+                    "text": "婚纱摄影",
+                    "value": 901,
+                    "children": []
+                },
+                {
+                    "text": "婚纱定制",
+                    "value": 902,
+                    "children": []
+                },
+                {
+                    "text": "婚纱租赁",
+                    "value": 913,
+                    "children": []
+                },
+                {
+                    "text": "成衣定制",
+                    "value": 903,
+                    "children": []
+                },
+                {
+                    "text": "婚庆公司",
+                    "value": 904,
+                    "children": []
+                },
+                {
+                    "text": "婚戒首饰",
+                    "value": 905,
+                    "children": []
+                },
+                {
+                    "text": "婚礼小商品",
+                    "value": 906,
+                    "children": []
+                },
+                {
+                    "text": "婚车租赁",
+                    "value": 907,
+                    "children": []
+                },
+                {
+                    "text": "彩妆造型",
+                    "value": 908,
+                    "children": []
+                },
+                {
+                    "text": "司仪主持",
+                    "value": 909,
+                    "children": []
+                },
+                {
+                    "text": "婚礼跟拍",
+                    "value": 910,
+                    "children": []
+                },
+                {
+                    "text": "孕产护理",
+                    "value": 911,
+                    "children": []
+                },
+                {
+                    "text": "其它结婚",
+                    "value": 912,
+                    "children": []
+                }
+            ]
+        },
+        {
+            "text": "亲子",
+            "value": 10,
+            "children": [
+                {
+                    "text": "亲子购物",
+                    "value": 1001,
+                    "children": []
+                },
+                {
+                    "text": "亲子游乐",
+                    "value": 1002,
+                    "children": []
+                },
+                {
+                    "text": "幼儿教育",
+                    "value": 1003,
+                    "children": []
+                },
+                {
+                    "text": "亲子摄影",
+                    "value": 1004,
+                    "children": []
+                },
+                {
+                    "text": "其它亲子",
+                    "value": 1005,
+                    "children": []
+                }
+            ]
+        }
+    ]
 }
-]}
