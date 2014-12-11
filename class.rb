@@ -3,31 +3,31 @@ end
 
 test = Test.new
 def test.speak
-  "sdf"
+  'sdf'
 end
-metaclass = class << test;self;end
+metaclass = class << test; self; end
 puts metaclass.instance_methods.grep(/speak/)
 puts Test.name
 Test.instance_eval do
   def namde
-    "sdfsdfsdf"
+    'sdfsdfsdf'
   end
   def self.namee
-    "nameee"
+    'nameee'
   end
 end
 Test.class_eval do
   def namde
-    "class"
+    'class'
   end
-  puts "sdf"+self.name
+  puts 'sdf' + name
 end
 puts Test.namde
 puts Test.namee
 puts test.namde
-test.class_eval do
+test.class.class_eval do
   def test
-    puts "test"
+    puts 'test'
   end
   puts self
 end
